@@ -1,20 +1,29 @@
-class Student:
-  def __init__(self, name, age ):
-    self.name = name
-    self.age = age
+# Exercise 1: Handling ZeroDivisionError
 
-  def display(self):
-    print(f"{self.name} is {self.age} years old.")
+num1 = int(input("Enter the first number: "))
+num2 = int(input("Enter the second number: "))
+try:
+  print(num1 / num2)
+except ZeroDivisionError :
+  print("cannot devide by 0")
 
-class Product:
-  def __init__(self, name, price, quantity):
-    self.name = name
-    self.price = price
-    self.quantity =  quantity
+# Exercise 2: File Handling with FileNotFoundError
 
-  def total(self):
-    total = self.quantity * self.price
-    return total
+input_file = input("enter the file name: ")
+try:
+  with open(input_file) as f:
+    for line in f:
+        print(line, end="")
+except FileNotFoundError:
+  print("file doesn't exist")
 
-p = Product("Notebook", 5.0, 10)
-print(p.total())  # 50.0
+# Exercise 3: Custom Exception
+
+class ValueTooHighError(Exception):
+  pass
+input_number = float(input("Enter a number: "))
+try:
+  if(input_number > 100):
+    raise ValueTooHighError("The number is too high.")
+except ValueTooHighError as e:
+  print(e)
