@@ -1,29 +1,19 @@
-# Exercise 1: Handling ZeroDivisionError
+import unittest
 
-num1 = int(input("Enter the first number: "))
-num2 = int(input("Enter the second number: "))
-try:
-  print(num1 / num2)
-except ZeroDivisionError :
-  print("cannot devide by 0")
+def square(num = 3):
+  result = num ** 2
+  return result
 
-# Exercise 2: File Handling with FileNotFoundError
+class TastSquare(unittest.TestCase):
+  def test_square(self):
+    self.assertEqual(square(3), 9)
+    self.assertEqual(square(0), 0)
+    self.assertEqual(square(-3), 9)
 
-input_file = input("enter the file name: ")
-try:
-  with open(input_file) as f:
-    for line in f:
-        print(line, end="")
-except FileNotFoundError:
-  print("file doesn't exist")
+  def test_error(self):
+    self.assertRaises(TypeError, square, "2")
 
-# Exercise 3: Custom Exception
 
-class ValueTooHighError(Exception):
-  pass
-input_number = float(input("Enter a number: "))
-try:
-  if(input_number > 100):
-    raise ValueTooHighError("The number is too high.")
-except ValueTooHighError as e:
-  print(e)
+
+if __name__ == "__main__":
+  unittest.main()
