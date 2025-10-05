@@ -7,7 +7,7 @@ class Book:
     def checked_out(self):
         self._is_checked_out =True
 
-    def returned(self):
+    def return_book(self):
         self._is_checked_out = False
 
     def is_available(self):
