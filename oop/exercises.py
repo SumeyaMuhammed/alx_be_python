@@ -1,19 +1,41 @@
-import unittest
+# Exercise 1: Constructors and Destructors Instructions:
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
 
-def square(num = 3):
-  result = num ** 2
-  return result
+  def __del__(self):
+    print(f"Person {self.name} has been deleted")
 
-class TastSquare(unittest.TestCase):
-  def test_square(self):
-    self.assertEqual(square(3), 9)
-    self.assertEqual(square(0), 0)
-    self.assertEqual(square(-3), 9)
+# Magic Methods (str and repr) Instructions:
 
-  def test_error(self):
-    self.assertRaises(TypeError, square, "2")
+class Book:
+  def __init__(self, title, author, pages):
+    self.title = title
+    self.author = author
+    self.pages = pages
 
+  def __str__(self):
+    return f"Title: {self.title}, Author: {self.author}, Number of Pages: {self.pages}."
+  
+  def __repr__(self):
+    return f"Book('{self.title}', '{self.author}', {self.pages})"
+  
+# Exercise 3: Class Inheritance Instructions:
+class Animal:
+  def eat(self):
+    print(f"It eats!")
 
+  def sleep(self):
+    print(f"It sleeps")
 
-if __name__ == "__main__":
-  unittest.main()
+class Dog(Animal):
+  def bark(self):
+    print("It sparks.")
+
+animal = Animal()
+animal.eat()
+animal.sleep()
+dog = Dog()
+dog.sleep()
+dog.bark()
