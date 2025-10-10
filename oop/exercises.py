@@ -1,41 +1,53 @@
-# Exercise 1: Constructors and Destructors Instructions:
-class Person:
-  def __init__(self, name, age):
-    self.name = name
-    self.age = age
-
-  def __del__(self):
-    print(f"Person {self.name} has been deleted")
-
-# Magic Methods (str and repr) Instructions:
-
-class Book:
-  def __init__(self, title, author, pages):
-    self.title = title
-    self.author = author
-    self.pages = pages
-
-  def __str__(self):
-    return f"Title: {self.title}, Author: {self.author}, Number of Pages: {self.pages}."
+# Exercise 1: Single Inheritance Instruction:
+class Shape:
+  def calculate_area(self, area):
+    return area
   
-  def __repr__(self):
-    return f"Book('{self.title}', '{self.author}', {self.pages})"
+class Rectangle(Shape):
+  def __init__(self, len, wid):
+    self.length = len
+    self.width = wid
+  def calculate_area(self):
+    return self.length * self.width
+
+
+# Exercise 2: Multiple Inheritance Instruction:
+
+class Bird:
+  def fly(self):
+    return "It flies!"
   
-# Exercise 3: Class Inheritance Instructions:
-class Animal:
-  def eat(self):
-    print(f"It eats!")
+class Mammal:
+  def run(self):
+    return "It runs!"
 
-  def sleep(self):
-    print(f"It sleeps")
+class Bat(Bird, Mammal):
+  def fly(self):
+    return "It flies!"
+  
+  def run(self):
+    return "It sometimes runs!"
 
-class Dog(Animal):
-  def bark(self):
-    print("It sparks.")
 
-animal = Animal()
-animal.eat()
-animal.sleep()
-dog = Dog()
-dog.sleep()
-dog.bark()
+# Exercise 3: Polymorphism with Duck Typing Instruction:
+
+class Dog:
+  def make_sound(self):
+    return "Woof!"
+  
+class Cat:
+  def make_sound(self):
+    return "Meow!"
+  
+class Bird:
+  def make_sound(self):
+    return "Chirp!"
+  
+def let_them_speak(animals):
+  for animal in animals:
+    print(animal.make_sound())
+
+sample_animals = [Cat(), Dog(), Bird()]    
+
+let_them_speak(sample_animals)
+
