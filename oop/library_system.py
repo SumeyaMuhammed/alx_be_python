@@ -3,15 +3,29 @@ class Book:
     self.title = title
     self.author = author
 
+  def __str__(self):
+    book_type = self.__class__.__name__
+    printed_statement =f"{book_type}: {self.title} by {self.author}"
+    return printed_statement
+
 class EBook(Book):
   def __init__(self, title, author, file_size:int):
     super().__init__(title, author)
     self.file_size = file_size
 
+  def __str__(self):
+    base_str = super().__str__()
+    return base_str + f", File Size: {self.file_size}KB"
+  
+
 class PrintBook(Book):
   def __init__(self, title, author, page_count:int):
     super().__init__(title, author)
     self.page_count = page_count
+
+  def __str__(self):
+    base_str = super().__str__()
+    return base_str + f", Page Count: {self.page_count}"
 
 class Library:
   def __init__(self):
@@ -22,10 +36,4 @@ class Library:
 
   def list_books(self):
     for book in self.books:
-      book_type = book.__class__.__name__
-      printed_statement =f"{book_type}: {book.title} by {book.author}"
-      if hasattr(book, "file_size"):
-        printed_statement += f", File Size: {book.file_size}KB"
-      elif hasattr(book, "page_count"):
-        printed_statement += f", Page Count: {book.page_count}"
-      print(printed_statement)
+      print(book)
